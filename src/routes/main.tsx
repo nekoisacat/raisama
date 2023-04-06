@@ -14,5 +14,5 @@ const Main = () => {
         </>
       )
 };
-//リ　ン　ク
+
 export default Main;
