@@ -26,12 +26,13 @@ const Meigen = () => {
         setPage(id);
         setView(rai.slice(offset, offset + limit));
         test.current?.scrollIntoView();
-        return () => {
-            setPage(id);
-            setView(rai.slice(offset, offset + limit));
-            test.current?.scrollIntoView();
-        }
     },[page, offset, limit, rai, id])
+    useEffect(()=>{
+        return() => {
+            setPage(1);
+            setView([])
+        }
+    },[])
     return (
         <>
         <div className='move' ref={test}></div>
