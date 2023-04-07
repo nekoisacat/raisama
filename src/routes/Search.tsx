@@ -1,15 +1,11 @@
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import { IRai } from "../atoms/atoms";
 import Content from "../comp/Content";
 import { parseURL } from "../comp/hooks";
-interface Props {
-    "No."?: string,
-    "リ　ン　ク"?: string,
-    "名　言"?: string,
-    "らいさまかわいい集"?: string
-}
+
 const Search = () => {
     const location = useLocation();
-    const rst: Props[] = location.state?.rst;
+    const rst: IRai[] = location.state?.rst;
     return (
         <>
             {rst ?

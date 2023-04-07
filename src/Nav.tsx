@@ -1,14 +1,15 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useRecoilState } from 'recoil';
-import { raisama } from './atoms/atoms';
+import { useRecoilValue, useRecoilValueLoadable } from 'recoil';
+import { selectRai } from './atoms/atoms';
 
 const Nav = () => {
     const navigate = useNavigate();
     const [composing, setComposing] = useState(false);
     const startComp = () => setComposing(true);
     const endComp = () => setComposing(false);
-    const [rai, setRai] = useRecoilState(raisama);
+    const rai = useRecoilValue(selectRai);
+    const raiLoadable = useRecoilValueLoadable(selectRai);
     const [inputs,setInputs] = useState({
         title: '',
     })
@@ -28,6 +29,7 @@ const Nav = () => {
             alert('２文字以上！');
             return;
         }
+        if(raiLoadable.state !== 'hasValue') return;
         const rst = rai.filter((el) => el["名　言"]?.includes(title) || el["らいさまかわいい集"]?.includes(title));
         if(rst.length === 0) {
             alert('ありません！');
@@ -52,7 +54,7 @@ const Nav = () => {
                     onKeyDown={(e)=>test(e)}>
             </input>
             <div className='toMain'>
-                <Link to={'/meigen/1'}>
+                <Link to={'/'}>
                     メインへ
                 </Link>
             </div>

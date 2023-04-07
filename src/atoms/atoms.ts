@@ -3,7 +3,7 @@ import { atom, RecoilState, selector } from 'recoil';
 function randomStrings(): string {
     return Math.random().toString(30).substring(2,11);
 }
-interface Props {
+export interface IRai {
     "No."?: string,
     "リ　ン　ク"?: string,
     "名　言"?: string,
@@ -14,12 +14,26 @@ export const theme = atom({
     default: true
 });
 
-export const raisama = atom<Props[]>({
+export const raisama = atom<IRai[]>({
     key: `raisama/${randomStrings()}`,
     default: []
 });
 
-export const totalRai = atom({
+export const selectRai = selector({
+    key: `selectRai/${randomStrings()}`,
+    get: async () => {
+        const rai: IRai[] = await fetch(
+            `https://api.fureweb.com/spreadsheets/1txzsWYmA86n7yrMtovgvI1arzblxUIG0DFLLcNi4lnU`
+        ).then(res => res.json())
+        .then(data => data.data)
+        return rai.filter(el => el["リ　ン　ク"] !== undefined);
+    },
+});
+
+export const totalRai = selector({
     key: `totalRai/${randomStrings()}`,
-    default: 0
+    get: ({get}) => {
+        const rst = get(selectRai);
+        return rst.length;
+    }
 })

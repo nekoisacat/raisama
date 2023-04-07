@@ -7,6 +7,9 @@
 a {
   text-decoration: none;
 }
+a:hover {
+  text-decoration: underline;
+}
 iframe {
   outline: none;
   border: 0;
@@ -50,6 +53,7 @@ ul, li {
   overflow: scroll;
   overflow-x: hidden;
   justify-content: space-between;
+  align-items: center;
 }
 
 /** HEAD */
@@ -149,6 +153,8 @@ ul, li {
   align-self: center;
   background-color: #18181b;
   border-radius: 7px;
+  flex: none;
+  margin-top: 3rem;
 }
 .paging a {
   width: auto;
@@ -201,6 +207,31 @@ ul, li {
 .move {
   position: absolute;
   top: 0;
+}
+.raiList {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+}
+.raiList p {
+  font-size: 3rem;
+  font-weight: 600;
+  margin-bottom: 2rem;
+}
+.raiList p.meigen {
+  font-size: 1.8rem;
+  padding: .7rem 1rem;
+  background-color: #18181b;
+  border-radius: 7px;
+  margin: .7rem 0rem;
+}
+.raiList p.meigen:hover {
+  cursor: pointer;
+  color: blueviolet;
 }
 @media (max-width: 400px) {
   .footer p {

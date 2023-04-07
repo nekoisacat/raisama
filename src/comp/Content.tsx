@@ -1,6 +1,6 @@
 interface Props {
     title: string,
-    url: string
+    url: JSX.Element | string
 }
 
 const Content: React.FunctionComponent<Props> = ({title, url}) => {
@@ -10,11 +10,7 @@ const Content: React.FunctionComponent<Props> = ({title, url}) => {
         {
             <div className="item">
                 <div className="twitch">
-                    <iframe
-                        src={`https://clips.twitch.tv/embed?clip=${url}&parent=${ppr}`}
-                        height={378}
-                        width={620}
-                    />
+                    {url}
                 </div>
                 <div className="title">
                     <h1>{title}</h1>
